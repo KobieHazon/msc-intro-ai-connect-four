@@ -7,14 +7,11 @@ Author: Kobie Hazon
 
 # multiAgents.py
 # --------------
-# Attribution Information: part of the code were created by John DeNero
+# Framework attribution: John DeNero and Dan Klein.
 # http://ai.berkeley.edu.
-# We thank them for that! :)
-
-
-import random
 
 import math
+import random
 
 import util
 from connect4 import Agent
@@ -52,14 +49,13 @@ class MultiAgentSearchAgent(Agent):
     only partially specified, and designed to be extended.  Agent is another abstract class.
     """
 
-    def __init__(self, evalFn='scoreEvaluationFunction', depth='2'):
+    def __init__(self, evalFn="scoreEvaluationFunction", depth="2"):
         self.index = 1  # agent is always index 1
         self.evaluationFunction = util.lookup(evalFn, globals())
         self.depth = int(depth)
 
 
 class BestRandom(MultiAgentSearchAgent):
-
     def getAction(self, gameState):
         return gameState.pick_best_move()
 
@@ -142,11 +138,12 @@ class MinimaxAgent(MultiAgentSearchAgent):
 class AlphaBetaAgent(MultiAgentSearchAgent):
     def getAction(self, gameState):
         """
-            Your minimax agent with alpha-beta pruning (question 2)
+        Your minimax agent with alpha-beta pruning (question 2)
         """
         "*** YOUR CODE HERE ***"
-        best_col, minimax_value = self.get_alphabeta_minimax_action_value(gameState, self.depth, -math.inf, math.inf,
-                                                                          True)
+        best_col, minimax_value = self.get_alphabeta_minimax_action_value(
+            gameState, self.depth, -math.inf, math.inf, True
+        )
         return best_col
 
     def get_max_val(self, gameState, depth, alpha, beta):
@@ -159,7 +156,9 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         max_value = -math.inf
         max_value_column = random.choice(valid_actions)
         for child_column, child_state in get_action_child_state(gameState, valid_actions):
-            child_value = self.get_alphabeta_minimax_action_value(child_state, depth - 1, alpha, beta, False)[1]
+            child_value = self.get_alphabeta_minimax_action_value(
+                child_state, depth - 1, alpha, beta, False
+            )[1]
             if child_value > max_value:
                 max_value = child_value
                 max_value_column = child_column
@@ -178,7 +177,9 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         min_value = math.inf
         min_value_column = random.choice(valid_actions)
         for child_column, child_state in get_action_child_state(gameState, valid_actions):
-            child_value = self.get_alphabeta_minimax_action_value(child_state, depth - 1, alpha, beta, True)[1]
+            child_value = self.get_alphabeta_minimax_action_value(
+                child_state, depth - 1, alpha, beta, True
+            )[1]
             if child_value < min_value:
                 min_value = child_value
                 min_value_column = child_column
@@ -204,7 +205,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
 
 class ExpectimaxAgent(MultiAgentSearchAgent):
     """
-      Your expectimax agent (question 3)
+    Your expectimax agent (question 3)
     """
 
     def getAction(self, gameState):
@@ -240,8 +241,11 @@ class ExpectimaxAgent(MultiAgentSearchAgent):
         valid_actions = gameState.getLegalActions()
         exp_value = 0
         child_state_probability = 1 / len(valid_actions)
-        for child_column, child_state in get_action_child_state(gameState, valid_actions):
-            exp_value += child_state_probability * self.get_expectimax_action_value(child_state, depth - 1, True)[1]
+        for _child_column, child_state in get_action_child_state(gameState, valid_actions):
+            exp_value += (
+                child_state_probability
+                * self.get_expectimax_action_value(child_state, depth - 1, True)[1]
+            )
         return None, exp_value
 
     def get_expectimax_action_value(self, gameState, depth, is_max_player):
