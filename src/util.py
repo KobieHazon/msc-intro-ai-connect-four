@@ -67,6 +67,7 @@ def loadAgent(agent):
         pythonPathDirs = pythonPathStr.split(':')
     else:
         pythonPathDirs = pythonPathStr.split(';')
+    pythonPathDirs.insert(0, os.path.dirname(os.path.abspath(__file__)))
     pythonPathDirs.append('.')
 
     for moduleDir in pythonPathDirs:

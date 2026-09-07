@@ -4,12 +4,13 @@ import pytest
 
 from test import readFile, startTest
 
-FIXTURE_DIRECTORY = Path(__file__).parents[1] / "test_yourself"
+FIXTURE_DIRECTORY = Path(__file__).parent / "fixtures"
 CASES = tuple(sorted(FIXTURE_DIRECTORY.glob("*.txt")))
 
 
 @pytest.mark.parametrize("fixture", CASES, ids=lambda path: path.stem)
-def test_recovered_agent_fixture(fixture):
+def test_recovered_agent_fixture(fixture, monkeypatch, tmp_path):
+    monkeypatch.chdir(tmp_path)
     depth, agent_name, board, expected_column = readFile(fixture)
 
     assert startTest(depth, agent_name, board) == expected_column
