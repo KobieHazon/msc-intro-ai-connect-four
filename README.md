@@ -38,6 +38,8 @@ The dummy video driver avoids opening a window during automated tests. Interacti
 
 ## Repository Provenance
 
+The first commit preserves the recovered supplied game framework, utilities, graphics, and 14 fixture cases. The second commit adds `src/multiAgents.py`, the recovered solution file. The exact unfilled starter version of that file was not present in the recovered archive, so the history does not claim to reproduce a byte-identical starter template.
+
 The framework identifies John DeNero and Dan Klein as upstream contributors. The minimax, alpha-beta, and expectimax implementations in `src/multiAgents.py` are the submitted work.
 
 ## Repository layout
