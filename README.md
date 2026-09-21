@@ -2,6 +2,10 @@
 
 A CS MSc Introduction to Artificial Intelligence exercise implementing minimax, alpha-beta pruning, and expectimax agents for Connect Four. The supplied game engine, interface, and fixture cases make it possible to compare deterministic adversarial search with stochastic opponent modeling.
 
+The repository includes the supplied game framework, utilities, graphics, and 14 test cases. My solution is in `src/multiAgents.py`. The blank starter version of that file was not found and is not included.
+
+The framework identifies John DeNero and Dan Klein as upstream contributors. The minimax, alpha-beta, and expectimax implementations in `src/multiAgents.py` are the submitted work.
+
 ## Implemented Agents
 
 - `MinimaxAgent`: alternating maximum and minimum search
@@ -35,12 +39,6 @@ SDL_VIDEODRIVER=dummy uv run python src/test.py
 ```
 
 The dummy video driver avoids opening a window during automated tests. Interactive gameplay uses the supplied pygame interface.
-
-## Repository Provenance
-
-The first commit preserves the recovered supplied game framework, utilities, graphics, and 14 fixture cases. The second commit adds `src/multiAgents.py`, the recovered solution file. The exact unfilled starter version of that file was not present in the recovered archive, so the history does not claim to reproduce a byte-identical starter template.
-
-The framework identifies John DeNero and Dan Klein as upstream contributors. The minimax, alpha-beta, and expectimax implementations in `src/multiAgents.py` are the submitted work.
 
 ## Repository layout
 
